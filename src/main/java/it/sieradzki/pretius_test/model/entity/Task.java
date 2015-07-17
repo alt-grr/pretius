@@ -6,36 +6,29 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Table(name = "employees")
-public class Employee {
+@Table(name = "tasks")
+public class Task {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "first_name", nullable = false)
-	private String firstName;
-
-	@Column(name = "last_name", nullable = false)
-	private String lastName;
+	@Column(nullable = false)
+	private String name;
 
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<HoursWorked> hoursWorkedList = new ArrayList<>();
 
-	public String getFirstName() {
-		return firstName;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project_id", nullable = false)
+	private Project project;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	protected List<HoursWorked> getMutableHoursWorkedList() {
@@ -50,12 +43,11 @@ public class Employee {
 		getMutableHoursWorkedList().add(hoursWorked);
 	}
 
-	@Override
-	public String toString() {
-		return "Employee{" +
-				"id=" + id +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				'}';
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 }
