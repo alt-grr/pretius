@@ -5,6 +5,7 @@
 
 	<context:annotation-config/>
 
+	<context:component-scan base-package="it.sieradzki.pretius_test.generator"/>
 	<context:component-scan base-package="it.sieradzki.pretius_test.model"/>
 	<context:component-scan base-package="it.sieradzki.pretius_test.service"/>
 
