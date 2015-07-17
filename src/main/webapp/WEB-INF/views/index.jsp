@@ -37,14 +37,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Project name</a>
+			<a class="navbar-brand" href="<c:url value='/'/>">Pretius report</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#contact">Contact</a></li>
 			</ul>
+			<form class="navbar-form navbar-right" action="<c:url value='/logout'/>" method="post">
+				<input type="submit" class="btn btn-default" value="Logout"/>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</form>
 		</div>
 	</div>
 </nav>
