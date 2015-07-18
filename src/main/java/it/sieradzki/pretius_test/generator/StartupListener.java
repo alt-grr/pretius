@@ -17,8 +17,11 @@ public class StartupListener {
 
 	@PostConstruct
 	private void afterStartup() {
+
 		LOGGER.info("Generating and saving random data to database started...");
 
 		generator.generateAndSaveRandomData();
+
+		LOGGER.info("Generating and saving random data to database finished.");
 	}
 }
