@@ -2,7 +2,10 @@ package it.sieradzki.pretius_test.generator;
 
 import com.google.common.collect.Iterables;
 import it.sieradzki.pretius_test.model.entity.*;
-import it.sieradzki.pretius_test.service.*;
+import it.sieradzki.pretius_test.service.ClientService;
+import it.sieradzki.pretius_test.service.EmployeeService;
+import it.sieradzki.pretius_test.service.ProjectService;
+import it.sieradzki.pretius_test.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +19,8 @@ import java.util.Random;
 @Service
 @Transactional
 public class Generator {
+
+	private static final Random RANDOM = new Random();
 
 	private static final int EMPLOYEES_NUMBER = 20;
 
@@ -37,9 +42,6 @@ public class Generator {
 
 	@Autowired
 	private TaskService taskService;
-
-	@Autowired
-	private HoursWorkedService hoursWorkedService;
 
 	@Autowired
 	private EmployeeService employeeService;
@@ -90,16 +92,15 @@ public class Generator {
 		List<Task> tasks = taskService.findAll();
 		Iterator<Employee> cyclicEmployees = Iterables.cycle(employees).iterator();
 
-		Random random = new Random();
 		for (Task task : tasks) {
 
 			LocalDate date = LocalDate.now().minusDays(DAYS_WORKED_ON_TASK);
-			for (int i = 0; i < DAYS_WORKED_ON_TASK; i++) {
+			for (int i = 0; i < DAYS_WORKED_ON_TASK; i = i + DAYS_TO_SKIP_ON_TASK) {
 
 				for (int j = 0; j < EMPLOYEES_WORKED_ON_TASK; j++) {
 
 					Employee employeeForTask = cyclicEmployees.next();
-					HoursWorked hoursWorked = new HoursWorked(date, 1 + random.nextInt(8), employeeForTask, task);
+					HoursWorked hoursWorked = new HoursWorked(date, 1 + RANDOM.nextInt(8), employeeForTask, task);
 					task.addHoursWorked(hoursWorked);
 					employeeForTask.addHoursWorked(hoursWorked);
 				}
