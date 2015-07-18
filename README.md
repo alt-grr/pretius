@@ -1,11 +1,11 @@
 # pretius
 Zadanie rekrutacyjne do firmy Pretius.
 
-# Wymagania
+## Wymagania
 - Java 8
 - Maven 3
 
-# Wykorzystane technologie
+## Wykorzystane technologie
 - Spring Framework
 - Spring Security
 - Spring Data JPA, [JdbcTemplate][1]
@@ -14,7 +14,7 @@ Zadanie rekrutacyjne do firmy Pretius.
 - Bootstrap 
 - Jetty
 
-# Instrukcja obsługi
+## Instrukcja obsługi
 1. W głównym katalogu projektu uruchom komendę: `mvn compile jetty:run`  
 2. Po wyświetleniu się na konsoli wiadomości `[INFO] Started Jetty Server` otwórz w przegladarce adres
 [http://localhost:8080/](http://localhost:8080/)
