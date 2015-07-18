@@ -1,17 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="pretius" tagdir="/WEB-INF/tags" %>
 <%@ page %>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>System raportowania Pretius</title>
-
-	<link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
-	<link href="<c:url value="/assets/css/bootstrap-theme.min.css"/>" rel="stylesheet">
+	<pretius:bootstrapHeadContent pageTitle="System raportowania Pretius"/>
 
 	<style>
 		body {
@@ -38,7 +32,7 @@
 			<ul class="nav navbar-nav">
 			</ul>
 			<form class="navbar-form navbar-right" action="<c:url value='/logout'/>" method="post">
-				<input type="submit" class="btn btn-default" value="Logout"/>
+				<input type="submit" class="btn btn-default" value="Wyloguj się"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
 		</div>
@@ -74,7 +68,6 @@
 
 </div>
 
-<script src="<c:url value="/assets/js/jquery-1.11.3.min.js"/>"></script>
-<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<pretius:bootstrapFooter/>
 </body>
 </html>

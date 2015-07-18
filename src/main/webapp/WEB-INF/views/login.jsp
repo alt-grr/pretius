@@ -1,18 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="spring-mvc" %>
+<%@ taglib prefix="pretius" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring-mvc" uri="http://www.springframework.org/tags/form" %>
 <%@ page %>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Starter Template for Bootstrap</title>
-
-	<link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
-	<link href="<c:url value="/assets/css/bootstrap-theme.min.css"/>" rel="stylesheet">
+	<pretius:bootstrapHeadContent pageTitle="System raportowania Pretius - zaloguj się"/>
 
 	<style>
 		body {
@@ -27,13 +21,8 @@
 			margin: 0 auto;
 		}
 
-		.form-signin .form-signin-heading,
-		.form-signin .checkbox {
+		.form-signin .form-signin-heading {
 			margin-bottom: 10px;
-		}
-
-		.form-signin .checkbox {
-			font-weight: normal;
 		}
 
 		.form-signin .form-control {
@@ -50,7 +39,7 @@
 			z-index: 2;
 		}
 
-		.form-signin input[type="email"] {
+		.form-signin input[type="text"] {
 			margin-bottom: -1px;
 			border-bottom-right-radius: 0;
 			border-bottom-left-radius: 0;
@@ -68,31 +57,35 @@
 
 <div class="container">
 
-	<form class="form-signin" action="<c:url value='/login'/>" method="POST">
+	<form class="form-signin" action="<c:url value='/login'/>" method="post">
 
-		<h2 class="form-signin-heading">Please sign in</h2>
+		<h2 class="form-signin-heading">Formularz logowania</h2>
 
 		<c:if test="${param.error != null}">
-			<div class="error">
-				<p>Login error: <c:out value="${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}"/><br>
-					Please try again.</p>
+			<div class="alert bg-danger">
+				<p>Błąd logowania: <c:out value="${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}"/><br>
+					Spróbuj ponownie później.</p>
 			</div>
 		</c:if>
 
-		<label for="username" class="sr-only">Username</label>
-		<input type="text" name="username" id="username" class="form-control" placeholder="username" required autofocus>
-		<label for="password" class="sr-only">Password</label>
-		<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+		<c:if test="${param.logout != null}">
+			<div class="alert bg-info">
+				<p>Wylogowano pomyślnie.</p>
+			</div>
+		</c:if>
 
-		<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Login">
+		<label for="username" class="sr-only">Login</label>
+		<input type="text" name="username" id="username" class="form-control" placeholder="Login" required autofocus>
+		<label for="password" class="sr-only">Hasło</label>
+		<input type="password" name="password" id="password" class="form-control" placeholder="Hasło" required>
+
+		<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Zaloguj się">
 
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 </div>
 <!-- /container -->
 
-
-<script src="<c:url value="/assets/js/jquery-1.11.3.min.js"/>"></script>
-<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+<pretius:bootstrapFooter/>
 </body>
 </html>
