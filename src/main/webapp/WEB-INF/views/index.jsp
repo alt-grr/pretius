@@ -50,7 +50,7 @@
 		<tr>
 			<th>Nazwa klienta</th>
 			<th>Nazwa projektu</th>
-			<th>Ilość godzin w miesiącu</th>
+			<th>Liczba godzin w miesiącu</th>
 			<th>Miesiąc z rokiem</th>
 		</tr>
 		</thead>
