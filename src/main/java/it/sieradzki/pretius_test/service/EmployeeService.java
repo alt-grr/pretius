@@ -19,6 +19,10 @@ public class EmployeeService {
 		return employeeRepository.save(entity);
 	}
 
+	public List<Employee> save(Iterable<Employee> entities) {
+		return employeeRepository.save(entities);
+	}
+
 	public Employee findOne(Long id) {
 		return employeeRepository.findOne(id);
 	}

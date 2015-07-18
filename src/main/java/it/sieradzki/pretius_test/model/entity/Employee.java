@@ -22,6 +22,14 @@ public class Employee {
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<HoursWorked> hoursWorkedList = new ArrayList<>();
 
+	protected Employee() {
+	}
+
+	public Employee(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

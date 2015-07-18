@@ -23,6 +23,13 @@ public class Task {
 	@JoinColumn(name = "project_id", nullable = false)
 	private Project project;
 
+	protected Task() {
+	}
+
+	public Task(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
