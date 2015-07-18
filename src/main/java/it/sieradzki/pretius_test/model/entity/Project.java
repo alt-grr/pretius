@@ -23,6 +23,13 @@ public class Project {
 	@JoinColumn(name = "client_id", nullable = false)
 	private Client client;
 
+	protected Project() {
+	}
+
+	public Project(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}

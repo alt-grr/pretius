@@ -19,6 +19,10 @@ public class ProjectService {
 		return projectRepository.save(entity);
 	}
 
+	public List<Project> save(Iterable<Project> entities) {
+		return projectRepository.save(entities);
+	}
+
 	public Project findOne(Long id) {
 		return projectRepository.findOne(id);
 	}

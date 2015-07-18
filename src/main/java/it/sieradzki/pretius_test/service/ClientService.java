@@ -19,6 +19,10 @@ public class ClientService {
 		return clientRepository.save(entity);
 	}
 
+	public List<Client> save(Iterable<Client> entities) {
+		return clientRepository.save(entities);
+	}
+
 	public Client findOne(Long id) {
 		return clientRepository.findOne(id);
 	}

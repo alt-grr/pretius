@@ -19,6 +19,13 @@ public class Client {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private Set<Project> projects = new HashSet<>();
 
+	protected Client() {
+	}
+
+	public Client(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
