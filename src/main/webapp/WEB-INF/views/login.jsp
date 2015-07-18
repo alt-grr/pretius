@@ -68,16 +68,17 @@
 
 <div class="container">
 
-	<c:if test="${not empty param.error}">
-		<div class="error">
-			Your login attempt was not successful, try again.<br />
-			Reason: <c:out value="${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}"/>
-		</div>
-	</c:if>
-
 	<form class="form-signin" action="<c:url value='/login'/>" method="POST">
 
 		<h2 class="form-signin-heading">Please sign in</h2>
+
+		<c:if test="${param.error != null}">
+			<div class="error">
+				<p>Login error: <c:out value="${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}"/><br>
+					Please try again.</p>
+			</div>
+		</c:if>
+
 		<label for="username" class="sr-only">Username</label>
 		<input type="text" name="username" id="username" class="form-control" placeholder="username" required autofocus>
 		<label for="password" class="sr-only">Password</label>
