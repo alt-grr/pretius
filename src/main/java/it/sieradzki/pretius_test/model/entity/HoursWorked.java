@@ -25,6 +25,16 @@ public class HoursWorked {
 	@JoinColumn(name = "task_id", nullable = false)
 	private Task task;
 
+	protected HoursWorked() {
+	}
+
+	public HoursWorked(LocalDate workingDay, int hoursWorked, Employee employee, Task task) {
+		this.workingDay = workingDay;
+		this.hoursWorked = hoursWorked;
+		this.employee = employee;
+		this.task = task;
+	}
+
 	public LocalDate getWorkingDay() {
 		return workingDay;
 	}
@@ -55,5 +65,16 @@ public class HoursWorked {
 
 	public void setTask(Task task) {
 		this.task = task;
+	}
+
+	@Override
+	public String toString() {
+		return "HoursWorked{" +
+				"id=" + id +
+				", workingDay=" + workingDay +
+				", hoursWorked=" + hoursWorked +
+				", employee=" + employee +
+				", task=" + task +
+				'}';
 	}
 }

@@ -1,16 +1,17 @@
 package it.sieradzki.pretius_test.generator;
 
-import it.sieradzki.pretius_test.model.entity.Client;
-import it.sieradzki.pretius_test.model.entity.Employee;
-import it.sieradzki.pretius_test.model.entity.Project;
-import it.sieradzki.pretius_test.model.entity.Task;
+import com.google.common.collect.Iterables;
+import it.sieradzki.pretius_test.model.entity.*;
 import it.sieradzki.pretius_test.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Transactional
@@ -21,6 +22,12 @@ public class Generator {
 	private static final int PROJECTS_NUMBER = 5;
 
 	private static final int TASKS_NUMBER = 5;
+
+	private static final int DAYS_WORKED_ON_TASK = 180;
+
+	private static final int EMPLOYEES_WORKED_ON_TASK = 3;
+
+	private static final int DAYS_TO_SKIP_ON_TASK = 4;
 
 	@Autowired
 	private ClientService clientService;
@@ -79,8 +86,30 @@ public class Generator {
 
 
 		// Employees, Task and HoursWorked
+
 		List<Task> tasks = taskService.findAll();
-		// TODO
+		Iterator<Employee> cyclicEmployees = Iterables.cycle(employees).iterator();
+
+		Random random = new Random();
+		for (Task task : tasks) {
+
+			LocalDate date = LocalDate.now().minusDays(DAYS_WORKED_ON_TASK);
+			for (int i = 0; i < DAYS_WORKED_ON_TASK; i++) {
+
+				for (int j = 0; j < EMPLOYEES_WORKED_ON_TASK; j++) {
+
+					Employee employeeForTask = cyclicEmployees.next();
+					HoursWorked hoursWorked = new HoursWorked(date, 1 + random.nextInt(8), employeeForTask, task);
+					task.addHoursWorked(hoursWorked);
+					employeeForTask.addHoursWorked(hoursWorked);
+				}
+
+				date = date.plusDays(DAYS_TO_SKIP_ON_TASK);
+			}
+		}
+
+		taskService.save(tasks);
+		employeeService.save(employees);
 	}
 
 	private List<Client> generateClientsList() {

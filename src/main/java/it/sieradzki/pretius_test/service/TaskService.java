@@ -19,6 +19,10 @@ public class TaskService {
 		return taskRepository.save(entity);
 	}
 
+	public List<Task> save(Iterable<Task> entities) {
+		return taskRepository.save(entities);
+	}
+
 	public Task findOne(Long id) {
 		return taskRepository.findOne(id);
 	}

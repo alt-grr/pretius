@@ -20,6 +20,8 @@
 		<hibernate.version>4.3.10.Final</hibernate.version>
 		<h2.version>1.4.187</h2.version>
 
+		<guava.version>18.0</guava.version>
+
 		<jetty.version>9.3.0.v20150612</jetty.version>
 	</properties>
 
@@ -111,6 +113,14 @@
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 			<version>1.0.2</version>
+		</dependency>
+
+		<!-- Other -->
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 	</dependencies>
 
