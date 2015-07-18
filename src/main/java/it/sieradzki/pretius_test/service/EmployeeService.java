@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class EmployeeService {
@@ -13,11 +15,15 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-	public Employee save(Employee employee) {
-		return employeeRepository.save(employee);
+	public Employee save(Employee entity) {
+		return employeeRepository.save(entity);
 	}
 
-	public Iterable<Employee> findAll() {
+	public Employee findOne(Long id) {
+		return employeeRepository.findOne(id);
+	}
+
+	public List<Employee> findAll() {
 		return employeeRepository.findAll();
 	}
 }
