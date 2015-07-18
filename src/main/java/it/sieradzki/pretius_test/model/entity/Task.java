@@ -16,7 +16,7 @@ public class Task {
 	@Column(nullable = false)
 	private String name;
 
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
 	private List<HoursWorked> hoursWorkedList = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY)
