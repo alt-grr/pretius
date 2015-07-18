@@ -28,7 +28,7 @@ public class ReportService {
 				"JOIN tasks ON projects.id = tasks.project_id " +
 				"JOIN hours_worked ON tasks.id = hours_worked.task_id " +
 				"GROUP BY project_id, working_year, working_month " +
-				"ORDER BY working_year ASC, working_month ASC";
+				"ORDER BY working_year ASC, working_month ASC, client_name ASC, project_name ASC";
 
 		return jdbcOperations.query(sql, (rs, rowNum) -> {
 			return new ReportRowDto(rs.getString("client_name"), rs.getString("project_name"),

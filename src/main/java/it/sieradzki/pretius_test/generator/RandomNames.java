@@ -72,11 +72,11 @@ public class RandomNames {
 	public String getProjectName() {
 		return PROJECT_NAME_PART_1[RANDOM.nextInt(PROJECT_NAME_PART_1.length)] + ' ' +
 				PROJECT_NAME_PART_2[RANDOM.nextInt(PROJECT_NAME_PART_2.length)] + ' ' +
-				PROJECT_NAME_PART_3[RANDOM.nextInt(PROJECT_NAME_PART_3.length)];
+				PROJECT_NAME_PART_3[RANDOM.nextInt(PROJECT_NAME_PART_3.length)] + ' ' + (1 + RANDOM.nextInt(100));
 	}
 
 	public String getTaskName() {
-		return TASK_NAME_PART_1[RANDOM.nextInt(TASK_NAME_PART_1.length)] + " zadanie nr " + RANDOM.nextInt(100);
+		return TASK_NAME_PART_1[RANDOM.nextInt(TASK_NAME_PART_1.length)] + " zadanie nr " + (1 + RANDOM.nextInt(100));
 	}
 
 	public String getFirstName() {
