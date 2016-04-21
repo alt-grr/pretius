@@ -178,8 +178,3 @@ hs_err_pid*
 
 ### Custom ###
 /node/
-
-# Folders with build-generated content
-src/main/webapp/assets/css/
-src/main/webapp/assets/fonts/
-src/main/webapp/assets/js/
